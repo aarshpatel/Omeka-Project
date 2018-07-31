@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
+    <title> Homepage </title>
+    <style>
+        html, body { margin: 0; padding: 0; }
+
+        .input-group.md-form.form-sm.form-2 input.amber-border  {
+            border: 1px solid #ffca28;
+        }
+        .input-group {
+            width: 900px;
+            /* float: right; */
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        #headline {
+            margin-right: 150px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="margin:auto; margin-top:calc(50% - 8px);" class="input-group md-form form-sm form-2 pl-0">
+            <h2 id="headline"> Omeka Project </h2> 
+            <input class="form-control my-0 py-1 red-border" id="search-bar" type="text" placeholder="Search for Course" aria-label="Search">
+            <div class="input-group-append" id="search-button">
+                <span class="input-group-text red lighten-3" id="basic-text1"><i class="fa fa-search text-grey" aria-hidden="true"></i></span>
+            </div>
+        </div>
+    </div>
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script>
+    $("#search-button").click(function(e) {
+        var query_text = $("#search-bar").val();
+        $(location).attr('href', '/search/' + query_text);
+    });
+</script>
+</html>

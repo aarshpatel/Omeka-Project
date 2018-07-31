@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <title> Homepage </title>
+
+</head>
+<body>
+    <div class="container">
+        <center><h3> Institutions </h3></center>
+        <ul class="list-group list-group-flush">
+            <% institutions.forEach(function(institution) { %>
+                <a href="/institution/<%= institution.id %>"><li class="list-group-item"><%= institution.name %></li></a>
+            <% }); %> 
+        </ul>
+    </div>
+</body>
+</html>
