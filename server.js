@@ -10,6 +10,7 @@ var $ = require('jquery')(window);
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + "/src"));
 
+console.log("hello world");
 
 app.get("/", function(req, res) {
     res.render("search");
