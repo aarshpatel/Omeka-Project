@@ -14,6 +14,10 @@ app.get("/", function(req, res) {
     res.render("search");
 });
 
+app.get("/course_leaf/:id", function(req, res) {
+    res.send("Course Leaf item");
+});
+
 app.get("/search/:query", function(req, res) {
     query_term = req.params.query;
 

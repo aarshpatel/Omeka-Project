@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/collapsable.css">
     <link rel="stylesheet" href="/vendor/perfect-scrollbar/perfect-scrollbar.css">
     <title> <%= course.Title %> </title>
-    <style> 
+    <style>
         .inline-text {
             display: inline;
             margin-right: 20px;
@@ -32,7 +32,7 @@
         <ul>
             <% course.universities.forEach(function(institution) { %>
                 <a href="/institution/<%= institution[1] %>"><li class="inline-text"><%= institution[0] %></li></a>
-            <% }); %> 
+            <% }); %>
         </ul>
         <% } %>
 
@@ -41,7 +41,7 @@
         <ul>
             <% course.colleges.forEach(function(institution) { %>
                 <a href="/institution/<%= institution[1] %>"><li class="inline-text"><%= institution[0] %></li></a>
-            <% }); %> 
+            <% }); %>
         </ul>
         <% } %>
 
@@ -49,22 +49,22 @@
         <ul>
             <% course.professors.forEach(function(professor) { %>
                 <a href="/professor/<%= professor[1] %>"><li class="inline-text"><%= professor[0] %></li></a>
-            <% }); %> 
+            <% }); %>
         </ul>
         <b><i>Course Code:</i></b> <%= course.CourseCode %>
-         
-        <br> <br> 
+
+        <br> <br>
         <h4> Course Leaf Items </h4>
         <ul class="list-group list-group-flush">
             <% course.leaf_items.forEach(function(leaf_item) { %>
-                <a href="/course_leaef/<%= leaf_item['id'] %>"><li class="list-group-item"><%= leaf_item["Title"] %></li></a>
-            <% }); %>  
+                <a href="/course_leaf/<%= leaf_item['id'] %>"><li class="list-group-item"><%= leaf_item["Title"] %></li></a>
+            <% }); %>
         </ul>
 
         <br> <br>
         <h3>Heirarchical Tree</h3>
         <div class="chart" id="collapsable-example"></div>
-        
+
     </div>
 </body>
 <script
@@ -934,7 +934,7 @@
             } // else this.CONFIG.scrollbar == 'None'
 
             return this;
-        },        
+        },
         /**
          * @param {TreeNode} treeNode
          * @param {boolean} hidePoint
@@ -1912,9 +1912,9 @@
                 if (key.startsWith("data-")) {
                     node.setAttribute(key, this.text[key]);
                 } else {
-                    
+
                     var textElement = document.createElement(this.text[key].href ? 'a' : 'p');
-                    
+
                     // make an <a> element if required
                     if (this.text[key].href) {
                         textElement.href = this.text[key].href;
@@ -1922,14 +1922,14 @@
                             textElement.target = this.text[key].target;
                         }
                     }
-                    
+
                     textElement.className =  "node-"+key;
                     textElement.appendChild(document.createTextNode(
                         this.text[key].val ? this.text[key].val :
                         this.text[key] instanceof Object ? "'val' param missing!" : this.text[key]
                     )
                     );
-                    
+
                     node.appendChild(textElement);
                 }
             }

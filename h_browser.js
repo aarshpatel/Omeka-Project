@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    
+
     $("#submitCourseID").click(function(e) {
         e.preventDefault();
         var courseID = Number($('#courseID').val());
@@ -11,12 +11,12 @@ $(document).ready(function() {
 
     });
 
-    function get_item_request(rest_api_url, callback) { 
+    function get_item_request(rest_api_url, callback) {
         request("GET", rest_api_url).done(function(response) {
             callback(response["body"]);
         });
     }
-    
+
     function get_item_data(rest_api_url) {
         get_item_request(rest_api_url_item, function(body) {
             var item_data = JSON.parse(body);
@@ -25,33 +25,33 @@ $(document).ready(function() {
                 parsed_course = parse_course(item_data);
                 console.log(parsed_course);
                 write_course_contents(parsed_course);
-            } 
+            }
             else if(item_data["o:resource_template"]["o:id"] == 2 || item_data["o:resource_template"]["o:id"] == 3 || item_data["o:resource_template"]["o:id"] == 9 || item_data["o:resource_template"]["o:id"] == 7) {
                 // parse leaf items (course media, syllabus, final assignments/reports)
                 // these leaf items must be connected to some upper level element in the tree structure
-    
+
                 parsed_leaf_item = parse_leaf_item(item_data);
                 console.log(parsed_leaf_item);
             }
-    
+
         });
     }
 
     function parse_course(course_data) {
         parsed_course = {}
-    
-        // parse course id  
+
+        // parse course id
         course_id = course_data["o:id"];
         parsed_course["CourseID"] = course_id;
-    
+
         // parse title
         title = course_data["dcterms:title"][0]["@value"];
         parsed_course["Title"] = title;
-    
+
         // parse Department Name
         department_name = course_data["HERO_:DepartmentName"][0]["@value"];
         parsed_course["DepartmentName"] = department_name;
-    
+
        // parse professors
         professors = [];
         all_professors = course_data["gvp:ulan2675_professor_was"];
@@ -61,7 +61,7 @@ $(document).ready(function() {
             professors.push([professor_name, professor_id]);
         }
         parsed_course["professors"] = professors;
-    
+
         // parse colleges
         colleges = [];
         all_colleges = course_data["HERO_:College"];
@@ -71,7 +71,7 @@ $(document).ready(function() {
             colleges.push([college_name, college_id]);
         }
         parsed_course["colleges"] = colleges;
-    
+
         // parse university
         universities = [];
         all_universities = course_data["HERO_:University"];
@@ -81,17 +81,17 @@ $(document).ready(function() {
             universities.push([university_name, university_id]);
         }
         parsed_course["universities"] = universities;
-    
+
         // parse description
         description = course_data["dcterms:description"][0]["@value"];
         parsed_course["Description"] = description;
-    
+
         // parse course code
         if("HERO_:CourseCode" in course_data) {
             course_code = course_data["HERO_:CourseCode"][0]["@value"];
             parsed_course["CourseCode"] = course_code;
         }
-    
+
         // parse course date
         if("dcterms:date" in course_data) {
             course_date = course_data["dcterms:date"][0]["@value"];
@@ -116,7 +116,7 @@ $(document).ready(function() {
                 professor_id = all_professors[idx]["value_resource_id"];
                 professors.push([professor_name, professor_id]);
             }
-            parsed_leaf_data["professors"] = professors; 
+            parsed_leaf_data["professors"] = professors;
         }
 
         // parse the description
@@ -157,7 +157,7 @@ $(document).ready(function() {
             }
             parsed_leaf_data["gvp:aat2418_uses"] = all_uses;
         }
-        
+
         return parsed_leaf_data;
     }
 
@@ -179,7 +179,7 @@ $(document).ready(function() {
             }
 
             $("#courseContent").append("<br /> <br /> <strong>Course Leaf Items<strong>: <hr id='course_leaf_items_line'/>");
-            
+
             for(var idx in all_course_leaf_items) {
                 write_leaf_item(all_course_leaf_items[idx]);
             }
@@ -215,27 +215,27 @@ $(document).ready(function() {
         $("#courseContent").append("<br/>");
 
         // department name
-        $("#courseContent").append("<strong>Department Name</strong>: " + course_contents["DepartmentName"]); 
+        $("#courseContent").append("<strong>Department Name</strong>: " + course_contents["DepartmentName"]);
         $("#courseContent").append("<br/>");
-        
+
         // date
-        $("#courseContent").append("<strong>Date</strong>: " + course_contents["Date"]); 
+        $("#courseContent").append("<strong>Date</strong>: " + course_contents["Date"]);
         $("#courseContent").append("<br/>");
-    
-        
+
+
         // colleges
         if(course_contents["colleges"].length > 0) {
-            $("#courseContent").append("<strong>Colleges</strong>: "); 
+            $("#courseContent").append("<strong>Colleges</strong>: ");
             for(var idx in course_contents["colleges"]) {
                 college_external_link = "http://resourcescopy.5colldh.org/s/blend/item/" + course_contents["colleges"][idx][1];
                 college_link = "<a href='" + college_external_link + "'>" + course_contents["colleges"][idx][0] + "</a>   ";
                 $("#courseContent").append(college_link);
             }
         }
-        
+
         // universities
         if(course_contents["universities"].length > 0) {
-            $("#courseContent").append("<strong>Universities</strong>: "); 
+            $("#courseContent").append("<strong>Universities</strong>: ");
             for(var idx in course_contents["universities"]) {
                 university_external_link = "http://resourcescopy.5colldh.org/s/blend/item/" + course_contents["universities"][idx][1];
                 university_link = "<a href='" + university_external_link + "'>" + course_contents["universities"][idx][0] + "</a>   ";
@@ -245,7 +245,7 @@ $(document).ready(function() {
 
         // description
         $("#courseContent").append("<br />");
-        $("#courseContent").append("<strong>Description</strong>: " + course_contents["Description"]); 
+        $("#courseContent").append("<strong>Description</strong>: " + course_contents["Description"]);
         $("#courseContent").append("<br />");
 
     }
