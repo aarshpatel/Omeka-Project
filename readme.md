@@ -1,1 +1,1 @@
-# Omeka Hierarhical Browser project
+# Omeka Hierarchical Browser project
