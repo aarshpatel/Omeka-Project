@@ -1,0 +1,32 @@
+{
+  "name": "omeka-heirarchical-browser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "jsdom": "^11.11.0",
+    "jquery": "^3.3.1",
+    "minimist": "^1.2.0",
+    "request": "^2.87.0",
+    "then-request": "^6.0.0",
+    "treant-js": "^1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aarshpatel/Omeka-Project.git"
+  },
+  "author": "Aarsh Patel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aarshpatel/Omeka-Project/issues"
+  },
+  "homepage": "https://github.com/aarshpatel/Omeka-Project#readme"
+}
