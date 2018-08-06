@@ -14,8 +14,18 @@ app.get("/", function(req, res) {
     res.render("search");
 });
 
-app.get("/course_leaf/:id", function(req, res) {
-    res.send("Course Leaf item");
+app.get("/institutions/", function(req, res) {
+    institutions_api_url = "http://resourcescopy.5colldh.org/api/items?item_set_id=7"
+    request("GET", institutions_api_url).done(function(response) {
+        all_institution = JSON.parse(response["body"]);
+        institutions_data = []
+        for(var idx in all_institution) {
+            id = all_institution[idx]["o:id"];
+            title = all_institution[idx]["dcterms:title"][0]["@value"];
+            institutions_data.push({"id": id, "name": title});
+        }
+        res.render("main", {"institutions": institutions_data})
+    });
 });
 
 app.get("/search/:query", function(req, res) {
