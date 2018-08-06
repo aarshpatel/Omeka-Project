@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
    <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/Treant.css">
     <link rel="stylesheet" href="/css/collapsable.css">
     <link rel="stylesheet" href="/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="/css/custom.css">
     <title> <%= course.Title %> </title>
     <style>
         .inline-text {
@@ -19,8 +20,8 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h3><center>  <%= course.Title%> (<%= course.Date %>) </center></h3>
+    <div class="container" role="main">
+        <h1><center>  <%= course.Title%> (<%= course.Date %>) </center></h1>
         <hr />
         <i><b>Description: </b></i><%= course.Description%>
         <br /> <br />
@@ -31,7 +32,7 @@
         <b><i>Universities:</i></b>
         <ul>
             <% course.universities.forEach(function(institution) { %>
-                <a href="/institution/<%= institution[1] %>"><li class="inline-text"><%= institution[0] %></li></a>
+                <li class="inline-text"><a href="/institution/<%= institution[1] %>"><%= institution[0] %></a></li>
             <% }); %>
         </ul>
         <% } %>
@@ -40,7 +41,7 @@
         <b><i>Colleges:</i></b>
         <ul>
             <% course.colleges.forEach(function(institution) { %>
-                <a href="/institution/<%= institution[1] %>"><li class="inline-text"><%= institution[0] %></li></a>
+                <li class="inline-text"><a href="/institution/<%= institution[1] %>"><%= institution[0] %></a></li>
             <% }); %>
         </ul>
         <% } %>
@@ -48,21 +49,21 @@
         <b><i>Professors:</i></b>
         <ul>
             <% course.professors.forEach(function(professor) { %>
-                <a href="/professor/<%= professor[1] %>"><li class="inline-text"><%= professor[0] %></li></a>
+                <li class="inline-text"><a href="/professor/<%= professor[1] %>"><%= professor[0] %></a></li>
             <% }); %>
         </ul>
         <b><i>Course Code:</i></b> <%= course.CourseCode %>
 
         <br> <br>
-        <h4> Course Leaf Items </h4>
+        <h2> Course Leaf Items </h2>
         <ul class="list-group list-group-flush">
             <% course.leaf_items.forEach(function(leaf_item) { %>
-                <a href="/course_leaf/<%= leaf_item['id'] %>"><li class="list-group-item"><%= leaf_item["Title"] %></li></a>
+                <li class="list-group-item"><a href="/course_leaf/<%= leaf_item['id'] %>"><%= leaf_item["Title"] %></a></li>
             <% }); %>
         </ul>
 
         <br> <br>
-        <h3>Heirarchical Tree</h3>
+        <h2>Heirarchical Tree</h2>
         <div class="chart" id="collapsable-example"></div>
 
     </div>

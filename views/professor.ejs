@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/custom.css">
     <title> Professors </title>
 
     <style> 
@@ -15,8 +16,8 @@
     </style>
 </head>
 <body>
-        <div class="container">
-            <h3><center><strong><%= professor.Name %></strong></center></h3>
+        <div class="container" role="main">
+            <h1><center><strong><%= professor.Name %></strong></center></h1>
             </br>
             <center>
                 <ul class="professor-data">
@@ -29,7 +30,7 @@
 
             <!-- <hr> -->
         </br>
-            <h3> Courses Taught </h3>
+            <h2> Courses Taught </h2>
             <ul class="list-group list-group-flush">
                 <% professor.courses.forEach(function(course) { %>
                     <li class="list-group-item">

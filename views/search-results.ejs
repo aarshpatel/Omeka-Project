@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/custom.css">
     <title> Search Results </title>
     <style>
         html {
@@ -13,11 +14,11 @@
     </style>
 </head>
 <body>
-        <div class="container">
-            <h3><center>Search Results</center></h3>
+        <div class="container" role="main">
+            <h1><center>Search Results</center></h1>
             <ul class="list-group list-group-flush">
                 <% results.forEach(function(result) { %>
-                    <li class="list-group-item"></li>
+                    <li class="list-group-item">
                         <a href="/<%= result.type.toLowerCase() %>/<%= result.id %>"><%= result.title %> <span style="color: <%= result.color %>">(<%= result.type %>)</span></a>
                     </li>
                 <% }); %>
